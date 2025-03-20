@@ -31,7 +31,40 @@
     outline: none;
     border-radius: 2em;
 
+}
+
+#letter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8 em 0.4em;
+    justify-content: center;
+
+}
+
+#letter-container button {
+    background-color: white;
+    border: 2px solid  goldenrod;
+    color: burlywood;
+    outline: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+    height: 3em;
+    width: 3em;
+
+}
 
 
+#letter-container .correct {
+   background-color: green;
+   color: white;
+   border: 2px solid green;
+}
+#letter-container .incorrect {
+    background-color: red;
+    color: white;
+    border: 2px solid red;
+}
+
+.hide {
 
 }
