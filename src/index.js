@@ -53,20 +53,19 @@ const generateWord = () => {
     letterContainer.classList.remove("hide");
     userInpSection.innerText = "";
     randomWord = words [ generateRandomValue (words)];
-    // console.log (randomWord);
     randomHint = options[randomWord]
-    hintref.innerHTML = '<div id = "wordHint">
-    <span>Hint: </span> ${randomHint}</div>';
+    hintref.innerHTML = '<div id="wordHint"><span>Hint:</span>${randomHint}</div';
+
     let displayItem = "";
     randomWord.split("").forEach((value) => {
-        displayItem  += "<span class="inputSpace">_</span';
-    });
-
+        displayItem  += '<span class="inputSpace">_</span>';
+    
+        });
 
     userInpSection.innerHTML = displayItem;
-    userInpSection.innerHTML += '<div
-    id= 'chanceCount'>Chances Left: ${lossCount}</div>' 
-};
+    userInpSection.innerHTML += '<div id= "chanceCounted">chances Left: ${lossCount}</div';
+
+    };
 
 const init = () => {
     winCount = 0;
@@ -86,7 +85,41 @@ for (let i = 65; i < 91; i++ ) {
 
     button.innerText = String.fromCharcode(i);
 
-    button.addEventListener("click",() => {});
+// char = character in array
+
+    button.addEventListener("click",() => {
+        message.innerText = 'correct Letter';
+        message.style.color = "#008000";
+        let charArray = randomWord.toUpperCase().split ("");
+        let inputSpace = document.getElementsByClassName ("inputSpace")
+        if (charArray.includes(button.innerText)){
+            charArray.forEach ((char,index) => {
+            if(char === button.innerText){
+                button.classList.add("correct");
+                inputSpace[index].innerText = char;
+                winCount += 1;
+                if (winCount == charArray.length){
+                    resultText.innerHTML = "You Win"; 
+                    startBtn.innerText = "restart";  
+                    blocker ();          
+                   }
+            }
+            })
+        }
+        else{
+        button.classList.add("incorrect");
+        lossCount -= 1;
+        document.getElementById("chancesCounted").innerText = 'Chances Left: ${lossCount}';
+        message.innerText = 'Incorrect Letter';
+        message.style.color = "#ff0000"
+        if(lossCount == 0){
+            word.innerHTML = 'The Word was: <span>${randomWord}</span>';
+            resultText.innerHTML = "Game Over";
+            blocker ();
+        }
+        }
+        button.disabled = true;
+    });
 
     letterContainer.appendChild(button);
 }
